@@ -62,16 +62,88 @@ AppAsset::register($this);
     */
     ?>
 
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
-    </nav>
-    <a class="btn btn-outline-primary" href="#">Sign up</a>
+    <div class="col-lg-6">
+        <div class="row main-nav">
+            <div class="col-lg-6">
+                <img src="/images/pills-img.png" alt="pill" id="pills">
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-2">
+                     <b>Speaker Portal</b>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <div class="col-lg-6">
+        <div class="row main-nav">
+            <div class="col-lg-8">
+                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                English
+                            </div>
+                            <div class="col-lg-4">
+                                Contact
+                            </div>
+                            <div class="col-lg-4">
+                                Sitemap
+                            </div>
+                        </div>
+                    </div>              
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <b>My Collection</b>
+                            </div>
+                            <div class="col-lg-6">
+                                <?= Html::beginForm(['/site/logout'], 'post') ?>
+                                <?=Html::submitButton("Logout") ?>
+                                <?= Html::endForm() ?>
+
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <img src="/images/logo.png" alt="logo">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <ul class="sub-nav">
+    
+            <li>
+                <a> Home </a>
+            </li>
+            <li>
+                <a> MPAF </a>
+            </li>
+            </li>
+            <li>
+                <a> Venous </a>
+            </li>
+            </li>
+            <li>
+                <a> ACS </a>
+            </li>
+            </li>
+            <li>
+                <a> KIVAMOXOBAN STUDIES </a>
+            </li>
+            <li>
+                <a> BACKGROUND INFORMATION </a>
+            </li>
+        </ul>
+    </div>
+
 
     <div class="container">
         <?= Breadcrumbs::widget([

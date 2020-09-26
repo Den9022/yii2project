@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m200926_174347_create_item
+ * Class m200926_210555_create_item
  */
-class m200926_174347_create_item extends Migration
+class m200926_210555_create_item extends Migration
 {
     /**
      * {@inheritdoc}
@@ -22,8 +22,7 @@ class m200926_174347_create_item extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull()->unique(),
             'position' => $this->smallInteger()->notNull()->defaultValue(0),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'category' => $this->string()->notNull(),
         ], $tableOptions);
     }
 
@@ -45,7 +44,7 @@ class m200926_174347_create_item extends Migration
 
     public function down()
     {
-        echo "m200926_174347_create_item cannot be reverted.\n";
+        echo "m200926_210555_create_item cannot be reverted.\n";
 
         return false;
     }

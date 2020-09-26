@@ -14,7 +14,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+use frontend\models\Item;
 /**
  * Site controller
  */
@@ -74,7 +74,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $dark_items = Item::find()->where(['category' => 'dark'])->orderBy('position')->all();
+        $light_items = Item::find()->where(['category' => 'light'])->orderBy('position')->all();
+
+        return $this->render('index', [
+             'dark_items' => $dark_items,
+             'light_items' => $light_items
+
+             ]);
     }
 
     /**
