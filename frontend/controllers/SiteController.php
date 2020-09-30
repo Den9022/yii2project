@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\controllers;
 
 use frontend\models\ResendVerificationEmailForm;
@@ -15,6 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Item;
+
 /**
  * Site controller
  */
@@ -28,15 +30,15 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'index', 'update'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['signup', 'login'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'update', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -64,6 +66,7 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+
         ];
     }
 
@@ -78,10 +81,10 @@ class SiteController extends Controller
         $light_items = Item::find()->where(['category' => 'light'])->orderBy('position')->all();
 
         return $this->render('index', [
-             'dark_items' => $dark_items,
-             'light_items' => $light_items
+            'dark_items' => $dark_items,
+            'light_items' => $light_items
 
-             ]);
+        ]);
     }
 
     /**
@@ -263,5 +266,17 @@ class SiteController extends Controller
         return $this->render('resendVerificationEmail', [
             'model' => $model
         ]);
+    }
+
+    public function actionUpdate()
+    {
+        $dark = Yii::$app->request->post('dark');
+        $light = Yii::$app->request->post('light');
+
+        Item::updateOrder($dark, 'dark');
+        Item::updateOrder($light, 'light');
+
+        Yii::$app->session->setFlash('success', 'Your list has been succesful saved!');
+        return $this->redirect('/index');
     }
 }

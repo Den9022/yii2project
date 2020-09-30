@@ -1,8 +1,10 @@
 <?php
 
 /* @var $this yii\web\View */
+
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Alert;
 
 $this->title = 'My Yii Application';
 ?>
@@ -14,8 +16,8 @@ $this->title = 'My Yii Application';
             <div class="row list-container">
 
                 <div class="col-lg-6">
-                    <ul id="sortable" class="column left-column">
-                        <?php foreach($dark_items as $item): ?>
+                    <ul id="dark" class="column left-column sortable">
+                        <?php foreach ($dark_items as $item) : ?>
                             <li class="element dark-element">
                                 <?php echo $item->name; ?>
                             </li>
@@ -23,8 +25,8 @@ $this->title = 'My Yii Application';
                     </ul>
                 </div>
                 <div class="col-lg-6">
-                    <ul class="column right-column">
-                        <?php foreach($light_items as $item): ?>
+                    <ul id="light" class="column right-column sortable">
+                        <?php foreach ($light_items as $item) : ?>
                             <li class="element light-element">
                                 <?php echo $item->name; ?>
                             </li>
@@ -33,8 +35,13 @@ $this->title = 'My Yii Application';
                 </div>
             </div>
             <div class="col-lg-4 col-lg-offset-5">
+                <?= Html::beginForm(['/site/update'], 'post') ?>
+                <?= Html::hiddenInput('dark', ""); ?>
+                <?= Html::hiddenInput('light', ""); ?>
                 <?= Html::submitButton('Save', ['class' => 'my-button', 'id' => 'save-order']) ?>
+                <?= Html::endForm() ?>
             </div>
+
         </div>
     </div>
 

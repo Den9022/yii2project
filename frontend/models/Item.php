@@ -47,4 +47,25 @@ class Item extends \yii\db\ActiveRecord
             'category' => 'Category',
         ];
     }
+
+    public function updateOrder($new_order, $category)
+    {
+
+        $new_order = explode(',', $new_order);
+
+        $items = Item::find()->where(['category' => $category])->all();
+
+        foreach ($items as $item) {
+
+            for ($i = 0; $i < count($new_order); $i++) {
+
+                if ($item->position == $i && $item->name != $new_order[$i]) {
+
+
+                    $item->name = $new_order[$i];
+                    $item->save();
+                }
+            }
+        }
+    }
 }
